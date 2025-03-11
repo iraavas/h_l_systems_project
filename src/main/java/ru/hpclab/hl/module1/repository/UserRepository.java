@@ -67,4 +67,8 @@ public class UserRepository {
         return user;
     }
 
+    public void clear(){
+        users.clear();
+    }
+
 }
