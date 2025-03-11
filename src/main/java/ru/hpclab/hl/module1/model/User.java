@@ -17,6 +17,9 @@ public class User {
         this.fio = fio;
     }
 
+    public User() {
+    }
+
     @NonNull
     public UUID getIdentifier() {
         return identifier;
