@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.hpclab.hl.module1.model.User;
+import ru.hpclab.hl.module1.entity.UserEntity;
 import ru.hpclab.hl.module1.repository.UserRepository;
 
 import java.util.Arrays;
@@ -19,7 +19,6 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {UserServiceTest.UserServiceTestConfiguration.class})
@@ -34,15 +33,15 @@ public class UserServiceTest {
     @Test
     public void testCreateAndGet(){
         //create
-        User user = new User(UUID.randomUUID(), "name");
+        UserEntity userEntity = new UserEntity(0L, UUID.randomUUID().toString(), "name", null);
 
-        User savedUser = userService.saveUser(user);
+        UserEntity savedUser = userService.saveUser(userEntity);
 
-        Assertions.assertEquals(user.getFio(), savedUser.getFio());
-        Mockito.verify(userRepository, Mockito.times(1)).save(user);
+        Assertions.assertEquals(userEntity.getFio(), savedUser.getFio());
+        Mockito.verify(userRepository, Mockito.times(1)).save(userEntity);
 
         //getAll
-        List<User> userList = userService.getAllUsers();
+        List<UserEntity> userList = userService.getAllUsers();
 
         Assertions.assertEquals("name1", userList.get(0).getFio());
         Assertions.assertEquals("name2", userList.get(1).getFio());
@@ -56,10 +55,11 @@ public class UserServiceTest {
         @Bean
         UserRepository userRepository() {
             UserRepository userRepository = mock(UserRepository.class);
-            when(userRepository.save(any())).thenReturn(new User(UUID.randomUUID(), "name"));
+            when(userRepository.save(any())).thenReturn(new UserEntity(0L,
+                    UUID.randomUUID().toString(), "name", null));
             when(userRepository.findAll())
-                    .thenReturn(Arrays.asList(new User(UUID.randomUUID(), "name1"),
-                            new User(UUID.randomUUID(), "name2")));
+                    .thenReturn(Arrays.asList(new UserEntity(1L, UUID.randomUUID().toString(), "name1", null),
+                            new UserEntity(2L, UUID.randomUUID().toString(), "name2", null)));
             return userRepository;
         }
 
