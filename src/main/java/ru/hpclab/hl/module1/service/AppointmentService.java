@@ -1,83 +1,90 @@
 package ru.hpclab.hl.module1.service;
 
-import ru.hpclab.hl.module1.model.Appointment;
-import ru.hpclab.hl.module1.model.Doctor;
-import ru.hpclab.hl.module1.repository.AppointmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.hpclab.hl.module1.controller.exception.DoctorException;
+import ru.hpclab.hl.module1.dto.AppointmentDTO;
+import ru.hpclab.hl.module1.entity.AppointmentEntity;
+import ru.hpclab.hl.module1.entity.DoctorEntity;
+import ru.hpclab.hl.module1.entity.PatientEntity;
+import ru.hpclab.hl.module1.mapper.AppointmentMapper;
+import ru.hpclab.hl.module1.repository.AppointmentRepository;
+import ru.hpclab.hl.module1.repository.DoctorRepository;
+import ru.hpclab.hl.module1.repository.PatientRepository;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
-    private static final List<Appointment> appointments = new ArrayList<>();
 
-    @Autowired
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
 
-    // 1. Получить все записи на прием
-    public List<Appointment> getAllAppointments() {
-        return appointments;
+    public AppointmentService(AppointmentRepository appointmentRepository,
+                              PatientRepository patientRepository,
+                              DoctorRepository doctorRepository) {
+        this.appointmentRepository = appointmentRepository;
+        this.patientRepository = patientRepository;
+        this.doctorRepository = doctorRepository;
     }
 
-    // 2. Получить запись на прием по ID
-    public Appointment getAppointmentById(int id) {
-        return appointments.stream()
-                .filter(appointment -> appointment.getId() == id)
-                .findFirst()
+    public List<AppointmentDTO> getAllAppointments() {
+        return appointmentRepository.findAll().stream()
+                .map(AppointmentMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public AppointmentDTO getAppointmentById(Long id) {
+        Optional<AppointmentEntity> appointmentEntity = appointmentRepository.findById(id);
+        return appointmentEntity.map(AppointmentMapper::toDTO).orElse(null);
+    }
+
+    public AppointmentDTO saveAppointment(AppointmentDTO appointmentDTO) {
+        // Проверяем, существует ли пациент
+        PatientEntity patient = patientRepository.findById(appointmentDTO.getPatientId())
+                .orElseThrow(() -> new RuntimeException("Пациент не найден"));
+
+        // Проверяем, существует ли доктор
+        DoctorEntity doctor = doctorRepository.findById(appointmentDTO.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Доктор не найден"));
+
+        // Проверяем, свободен ли доктор на указанное время
+        boolean doctorBusy = !appointmentRepository
+                .findByDoctorIdAndAppointmentDate(doctor.getId(), appointmentDTO.getAppointmentDate())
+                .isEmpty();
+        if (doctorBusy) {
+            throw new DoctorException("Доктор уже занят в это время: " + appointmentDTO.getAppointmentDate());
+        }
+
+        // Создаём запись
+        AppointmentEntity appointmentEntity = AppointmentMapper.toEntity(appointmentDTO, patient, doctor);
+        return AppointmentMapper.toDTO(appointmentRepository.save(appointmentEntity));
+    }
+
+    public AppointmentDTO updateAppointment(Long id, AppointmentDTO appointmentDTO) {
+        return appointmentRepository.findById(id)
+                .map(existingAppointment -> {
+                    // Проверяем, существует ли пациент
+                    PatientEntity patient = patientRepository.findById(appointmentDTO.getPatientId())
+                            .orElseThrow(() -> new RuntimeException("Пациент не найден"));
+
+                    // Проверяем, существует ли доктор
+                    DoctorEntity doctor = doctorRepository.findById(appointmentDTO.getDoctorId())
+                            .orElseThrow(() -> new RuntimeException("Доктор не найден"));
+
+                    existingAppointment.setPatient(patient);
+                    existingAppointment.setDoctor(doctor);
+                    existingAppointment.setAppointmentDate(appointmentDTO.getAppointmentDate());
+                    existingAppointment.setDiagnosis(appointmentDTO.getDiagnosis());
+
+                    return AppointmentMapper.toDTO(appointmentRepository.save(existingAppointment));
+                })
                 .orElse(null);
     }
 
-    // 3. Проверить доступность врача
-    public boolean isDoctorAvailable(Doctor doctor, LocalDateTime appointmentDateTime) {
-        String appointmentTime = appointmentDateTime.toLocalTime().toString();
-
-        // Проверяем, входит ли время в расписание врача
-        boolean withinSchedule = doctor.getSchedule().contains(appointmentTime);
-
-        // Проверяем, не занят ли врач в это время
-        boolean isFree = appointments.stream()
-                .noneMatch(a -> a.getDoctor().equals(doctor) && a.getAppointmentDate().equals(appointmentDateTime));
-
-        return withinSchedule && isFree;
-    }
-
-    // 4. Создать новую запись на прием (с проверкой доступности врача)
-    public Appointment saveAppointment(Appointment appointment) {
-        if (!isDoctorAvailable(appointment.getDoctor(), appointment.getAppointmentDate())) {
-            throw new IllegalArgumentException("Врач недоступен в это время!");
-        }
-
-        appointment.setId(appointments.size() + 1);
-        appointments.add(appointment);
-        return appointment;
-    }
-
-    // 5. Обновить существующую запись на прием
-    public Appointment updateAppointment(int id, Appointment updatedAppointment) {
-        Optional<Appointment> appointmentOptional = appointments.stream()
-                .filter(appointment -> appointment.getId() == id)
-                .findFirst();
-
-        if (appointmentOptional.isPresent()) {
-            Appointment appointment = appointmentOptional.get();
-            if (!isDoctorAvailable(updatedAppointment.getDoctor(), updatedAppointment.getAppointmentDate())) {
-                throw new IllegalArgumentException("Врач недоступен в это время!");
-            }
-            appointment.setPatient(updatedAppointment.getPatient());
-            appointment.setDoctor(updatedAppointment.getDoctor());
-            appointment.setAppointmentDate(updatedAppointment.getAppointmentDate());
-            appointment.setDiagnosis(updatedAppointment.getDiagnosis());
-            return appointment;
-        }
-        return null;
-    }
-
-    // 6. Удалить запись на прием
-    public void deleteAppointment(int id) {
-        appointments.removeIf(appointment -> appointment.getId() == id);
+    public void deleteAppointment(Long id) {
+        appointmentRepository.deleteById(id);
     }
 }

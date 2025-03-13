@@ -1,58 +1,52 @@
 package ru.hpclab.hl.module1.service;
 
-import ru.hpclab.hl.module1.model.Doctor;
-import ru.hpclab.hl.module1.repository.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.hpclab.hl.module1.dto.DoctorDTO;
+import ru.hpclab.hl.module1.entity.DoctorEntity;
+import ru.hpclab.hl.module1.mapper.DoctorMapper;
+import ru.hpclab.hl.module1.repository.DoctorRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DoctorService {
-    private static final List<Doctor> doctors = new ArrayList<>();
 
-    @Autowired
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
 
-    // 1. Получить всех врачей
-    public List<Doctor> getAllDoctors() {
-        return doctors;
+    public DoctorService(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
     }
 
-    // 2. Найти врача по имени
-    public Doctor getDoctorByName(String fullName) {
-        return doctors.stream()
-                .filter(doctor -> doctor.getFullName().equalsIgnoreCase(fullName))
-                .findFirst()
+    public List<DoctorDTO> getAllDoctors() {
+        return doctorRepository.findAll().stream()
+                .map(DoctorMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public DoctorDTO getDoctorById(Long id) {
+        Optional<DoctorEntity> doctorEntity = doctorRepository.findById(id);
+        return doctorEntity.map(DoctorMapper::toDTO).orElse(null);
+    }
+
+    public DoctorDTO saveDoctor(DoctorDTO doctorDTO) {
+        DoctorEntity entity = DoctorMapper.toEntity(doctorDTO);
+        return DoctorMapper.toDTO(doctorRepository.save(entity));
+    }
+
+    public DoctorDTO updateDoctor(Long id, DoctorDTO newDoctorDTO) {
+        return doctorRepository.findById(id)
+                .map(existingDoctor -> {
+                    existingDoctor.setFio(newDoctorDTO.getFio());
+                    existingDoctor.setSpecialization(newDoctorDTO.getSpecialization());
+                    existingDoctor.setWorkSchedule(newDoctorDTO.getWorkSchedule());
+                    return DoctorMapper.toDTO(doctorRepository.save(existingDoctor));
+                })
                 .orElse(null);
     }
 
-    // 3. Добавить нового врача
-    public Doctor saveDoctor(Doctor doctor) {
-        // Проверяем, нет ли уже врача с таким именем
-        if (getDoctorByName(doctor.getFullName()) != null) {
-            throw new IllegalArgumentException("Врач с таким именем уже существует!");
-        }
-        doctors.add(doctor);
-        return doctor;
-    }
-
-    // 4. Удалить врача по имени
-    public void deleteDoctor(String fullName) {
-        doctors.removeIf(doctor -> doctor.getFullName().equalsIgnoreCase(fullName));
-    }
-
-    // 5. Обновить данные врача
-    public Doctor updateDoctor(String fullName, Doctor updatedDoctor) {
-        for (Doctor doctor : doctors) {
-            if (doctor.getFullName().equalsIgnoreCase(fullName)) {
-                doctor.setSpecialization(updatedDoctor.getSpecialization());
-                doctor.setSchedule(updatedDoctor.getSchedule());
-                return doctor;
-            }
-        }
-        return null;
+    public void deleteDoctor(Long id) {
+        doctorRepository.deleteById(id);
     }
 }

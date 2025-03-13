@@ -1,24 +1,30 @@
 package ru.hpclab.hl.module1.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="t_patient")
 public class Patient {
-    private String fullName;
-    private String birthDate;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String fio;
+    @Column(name="date_of_birth")
+    private LocalDate dateOfBirth;
+    @Column(name="insurance_number")
     private String insuranceNumber;
+//    private List<Appointment> appointments = new ArrayList<>();
 
-    public Patient(String fullName, String birthDate, String insuranceNumber) {
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-        this.insuranceNumber = insuranceNumber;
-    }
-
-    public Patient() {}
-
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getBirthDate() { return birthDate; }
-    public void setBirthDate(String birthDate) { this.birthDate = birthDate; }
-
-    public String getInsuranceNumber() { return insuranceNumber; }
-    public void setInsuranceNumber(String insuranceNumber) { this.insuranceNumber = insuranceNumber; }
 }

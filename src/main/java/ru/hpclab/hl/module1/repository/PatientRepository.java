@@ -1,16 +1,9 @@
 package ru.hpclab.hl.module1.repository;
 
-import ru.hpclab.hl.module1.model.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.hpclab.hl.module1.entity.PatientEntity;
 
 @Repository
-public class PatientRepository {
-    private static final List<Patient> patients = new ArrayList<>();
-
-    public List<Patient> findAll() {
-        return patients;
-    }
+public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
 }

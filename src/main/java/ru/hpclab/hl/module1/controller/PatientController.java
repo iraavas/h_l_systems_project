@@ -1,9 +1,8 @@
 package ru.hpclab.hl.module1.controller;
 
-import ru.hpclab.hl.module1.model.Patient;
-import ru.hpclab.hl.module1.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.hpclab.hl.module1.dto.PatientDTO;
+import ru.hpclab.hl.module1.service.PatientService;
 
 import java.util.List;
 
@@ -13,33 +12,39 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    @Autowired
+    // Внедрение через конструктор
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
+    // Получить список всех пациентов
     @GetMapping
-    public List<Patient> getAllPatients() {
+    public List<PatientDTO> getAllPatients() {
         return patientService.getAllPatients();
+        // Возвращаем список DTO, аналогично вашему .stream().map(...) в примере
     }
 
-    @GetMapping("/{insuranceNumber}")
-    public Patient getPatientByInsurance(@PathVariable String insuranceNumber) {
-        return patientService.getPatientByInsurance(insuranceNumber);
+    // Получить одного пациента по ID
+    @GetMapping("/{id}")
+    public PatientDTO getPatientById(@PathVariable Long id) {
+        return patientService.getPatientById(id);
     }
 
+    // Создать пациента
     @PostMapping
-    public Patient createPatient(@RequestBody Patient patient) {
-        return patientService.savePatient(patient);
+    public PatientDTO addPatient(@RequestBody PatientDTO patientDTO) {
+        return patientService.savePatient(patientDTO);
     }
 
-    @DeleteMapping("/{insuranceNumber}")
-    public void deletePatient(@PathVariable String insuranceNumber) {
-        patientService.deletePatient(insuranceNumber);
+    // Обновить данные пациента
+    @PutMapping("/{id}")
+    public PatientDTO updatePatient(@PathVariable Long id, @RequestBody PatientDTO patientDTO) {
+        return patientService.updatePatient(id, patientDTO);
     }
 
-    @PutMapping("/{insuranceNumber}")
-    public Patient updatePatient(@PathVariable String insuranceNumber, @RequestBody Patient updatedPatient) {
-        return patientService.updatePatient(insuranceNumber, updatedPatient);
+    // Удалить пациента
+    @DeleteMapping("/{id}")
+    public void deletePatient(@PathVariable Long id) {
+        patientService.deletePatient(id);
     }
 }

@@ -24,12 +24,38 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+
+    runtimeOnly 'org.postgresql:postgresql:42.6.0'
+
+    implementation 'org.flywaydb:flyway-core:10.0.0'
+    implementation 'org.flywaydb:flyway-database-postgresql:10.0.0'
 
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.36'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    // Поддержка Spring Boot Web (у вас уже есть)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Data JPA (добавьте это)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Драйвер для PostgreSQL
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Lombok (у вас уже есть, но можно проверить)
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    // Тестирование
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
