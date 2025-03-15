@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 import ru.hpclab.hl.module1.dto.DoctorDTO;
 import ru.hpclab.hl.module1.entity.DoctorEntity;
 import ru.hpclab.hl.module1.mapper.DoctorMapper;
+import ru.hpclab.hl.module1.repository.AppointmentRepository;
 import ru.hpclab.hl.module1.repository.DoctorRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,9 +16,12 @@ import java.util.stream.Collectors;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public DoctorService(DoctorRepository doctorRepository) {
+
+    public DoctorService(DoctorRepository doctorRepository, AppointmentRepository appointmentRepository) {
         this.doctorRepository = doctorRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     public List<DoctorDTO> getAllDoctors() {
@@ -48,5 +53,11 @@ public class DoctorService {
 
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
+    }
+
+    // ✅ Проверка доступности врача по специализации и времени
+    public boolean isDoctorAvailable(String specialization, LocalDateTime appointmentDate) {
+        Long count = appointmentRepository.countAppointmentsForSpecializationAtTime(specialization, appointmentDate);
+        return count == 0; // Если записей нет, значит врач доступен
     }
 }

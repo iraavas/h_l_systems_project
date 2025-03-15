@@ -2,6 +2,7 @@ package ru.hpclab.hl.module1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.hpclab.hl.module1.entity.AppointmentEntity;
 
@@ -20,8 +21,10 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
     // Найти все приёмы врача
     List<AppointmentEntity> findByDoctorId(Long doctorId);
 
-    // Подсчитать количество приёмов у врача в указанный день
+    // Проверяем, есть ли уже запись к врачу с нужной специализацией на указанное время
     @Query("SELECT COUNT(a) FROM AppointmentEntity a " +
-            "WHERE a.doctor.id = :doctorId AND DATE(a.appointmentDate) = DATE(:appointmentDate)")
-    Long countAppointmentsForDoctorOnDate(Long doctorId, LocalDateTime appointmentDate);
+            "WHERE a.doctor.specialization = :specialization " +
+            "AND a.appointmentDate = :appointmentDate")
+    Long countAppointmentsForSpecializationAtTime(String specialization, LocalDateTime appointmentDate);
+
 }

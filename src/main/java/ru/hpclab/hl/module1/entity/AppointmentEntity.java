@@ -1,6 +1,7 @@
 package ru.hpclab.hl.module1.entity;
 
 import jakarta.persistence.*;
+import ru.hpclab.hl.module1.model.AppointmentStatus;
 
 import java.time.LocalDateTime;
 
@@ -42,6 +43,9 @@ public class AppointmentEntity {
         this.appointmentDate = appointmentDate;
         this.diagnosis = diagnosis;
         this.status = status;
+    }
+
+    public AppointmentEntity(Long id, PatientEntity patient, DoctorEntity doctor, LocalDateTime appointmentDate, String diagnosis, ru.hpclab.hl.module1.entity.AppointmentStatus appointmentStatus) {
     }
 
     public Long getId() {
