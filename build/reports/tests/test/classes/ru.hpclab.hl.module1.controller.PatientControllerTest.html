@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - PatientControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>PatientControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/ru.hpclab.hl.module1.controller.html">ru.hpclab.hl.module1.controller</a> &gt; PatientControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.180s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldCreateAndGetPatient()</td>
+<td class="success">0.120s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldDeletePatient()</td>
+<td class="success">0.045s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldReturnListOfPatients()</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-04-05T17:05:52.474+03:00  INFO 21088 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [ru.hpclab.hl.module1.controller.PatientControllerTest]: PatientControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-05T17:05:52.486+03:00  INFO 21088 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration ru.hpclab.hl.module1.Module1Application for test class ru.hpclab.hl.module1.controller.PatientControllerTest
+2025-04-05T17:05:52.488+03:00  INFO 21088 --- [    Test worker] tc.postgres:16                           : Creating container for image: postgres:16
+2025-04-05T17:05:52.570+03:00  INFO 21088 --- [    Test worker] tc.postgres:16                           : Container postgres:16 is starting: 737869dab5c933ab1b08ffb16e48f4248f71aec5eb9f43b73973edd4b80fe3c7
+2025-04-05T17:05:53.733+03:00  INFO 21088 --- [    Test worker] tc.postgres:16                           : Container postgres:16 started in PT1.245426S
+2025-04-05T17:05:53.733+03:00  INFO 21088 --- [    Test worker] tc.postgres:16                           : Container is started (JDBC URL: jdbc:postgresql://localhost:51289/module1?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.3)
+
+2025-04-05T17:05:53.774+03:00  INFO 21088 --- [    Test worker] r.h.h.m.c.PatientControllerTest          : Starting PatientControllerTest using Java 21.0.6 with PID 21088 (started by Irina in C:\Users\User\hl-module1)
+2025-04-05T17:05:53.774+03:00  INFO 21088 --- [    Test worker] r.h.h.m.c.PatientControllerTest          : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-04-05T17:05:53.982+03:00  INFO 21088 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-05T17:05:54.001+03:00  INFO 21088 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2025-04-05T17:05:54.058+03:00  INFO 21088 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2025-04-05T17:05:54.059+03:00  INFO 21088 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-05T17:05:54.060+03:00  INFO 21088 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-05T17:05:54.086+03:00  INFO 21088 --- [    Test worker] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-04-05T17:05:54.086+03:00  INFO 21088 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 310 ms
+2025-04-05T17:05:54.218+03:00  INFO 21088 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:51289/module1 (PostgreSQL 16.8)
+2025-04-05T17:05:54.223+03:00  WARN 21088 --- [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 16.8 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-04-05T17:05:54.228+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table &quot;public&quot;.&quot;flyway_schema_history&quot; does not exist yet
+2025-04-05T17:05:54.229+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.003s)
+2025-04-05T17:05:54.230+03:00  WARN 21088 --- [    Test worker] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2025-04-05T17:05:54.239+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table &quot;public&quot;.&quot;flyway_schema_history&quot; ...
+2025-04-05T17:05:54.262+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema &quot;public&quot;: &lt;&lt; Empty Schema &gt;&gt;
+2025-04-05T17:05:54.263+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema &quot;public&quot; is up to date. No migration necessary.
+2025-04-05T17:05:54.282+03:00  INFO 21088 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-05T17:05:54.285+03:00  INFO 21088 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-05T17:05:54.292+03:00  INFO 21088 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-05T17:05:54.293+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-04-05T17:05:54.304+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@2eed4dd6
+2025-04-05T17:05:54.305+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-04-05T17:05:54.307+03:00  WARN 21088 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-05T17:05:54.309+03:00  INFO 21088 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 16.8
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-05T17:05:54.429+03:00  INFO 21088 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table t_appointment (
+        id bigint generated by default as identity,
+        appointment_date timestamp(6) not null,
+        diagnosis varchar(255),
+        status varchar(255) not null check (status in ('SCHEDULED','COMPLETED','CANCELLED')),
+        doctor_id bigint not null,
+        patient_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table t_doctor (
+        id bigint generated by default as identity,
+        fio varchar(255) not null,
+        specialization varchar(255) not null,
+        work_schedule varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table t_patient (
+        id bigint generated by default as identity,
+        date_of_birth date not null,
+        fio varchar(255) not null,
+        insurance_number varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists t_patient 
+       drop constraint if exists UKdg4l3b692vv0yu9a566p5g0rp
+2025-04-05T17:05:54.447+03:00  WARN 21088 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-04-05T17:05:54.447+03:00  WARN 21088 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint &quot;ukdg4l3b692vv0yu9a566p5g0rp&quot; of relation &quot;t_patient&quot; does not exist, skipping
+Hibernate: 
+    alter table if exists t_patient 
+       add constraint UKdg4l3b692vv0yu9a566p5g0rp unique (insurance_number)
+Hibernate: 
+    alter table if exists t_appointment 
+       add constraint FKjhim6ywhmv8rgqrk0vuh4mrwq 
+       foreign key (doctor_id) 
+       references t_doctor
+Hibernate: 
+    alter table if exists t_appointment 
+       add constraint FKjedixwd7ll8ayjfdy1r13qum6 
+       foreign key (patient_id) 
+       references t_patient
+2025-04-05T17:05:54.452+03:00  INFO 21088 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-05T17:05:54.512+03:00  WARN 21088 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-05T17:05:54.621+03:00  INFO 21088 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 51299 (http) with context path '/'
+2025-04-05T17:05:54.625+03:00  INFO 21088 --- [    Test worker] r.h.h.m.c.PatientControllerTest          : Started PatientControllerTest in 0.889 seconds (process running for 27.003)
+2025-04-05T17:05:54.656+03:00  INFO 21088 --- [o-auto-2-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-05T17:05:54.656+03:00  INFO 21088 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-05T17:05:54.657+03:00  INFO 21088 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: 
+    insert 
+    into
+        t_patient
+        (date_of_birth, fio, insurance_number) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    select
+        pe1_0.id,
+        pe1_0.date_of_birth,
+        pe1_0.fio,
+        pe1_0.insurance_number 
+    from
+        t_patient pe1_0 
+    where
+        pe1_0.id=?
+Hibernate: 
+    select
+        pe1_0.id,
+        pe1_0.date_of_birth,
+        pe1_0.fio,
+        pe1_0.insurance_number 
+    from
+        t_patient pe1_0
+Hibernate: 
+    insert 
+    into
+        t_patient
+        (date_of_birth, fio, insurance_number) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    select
+        pe1_0.id,
+        pe1_0.date_of_birth,
+        pe1_0.fio,
+        pe1_0.insurance_number 
+    from
+        t_patient pe1_0 
+    where
+        pe1_0.id=?
+Hibernate: 
+    select
+        a1_0.patient_id,
+        a1_0.id,
+        a1_0.appointment_date,
+        a1_0.diagnosis,
+        a1_0.doctor_id,
+        d1_0.id,
+        d1_0.fio,
+        d1_0.specialization,
+        d1_0.work_schedule,
+        a1_0.status 
+    from
+        t_appointment a1_0 
+    left join
+        t_doctor d1_0 
+            on d1_0.id=a1_0.doctor_id 
+    where
+        a1_0.patient_id=?
+Hibernate: 
+    delete 
+    from
+        t_patient 
+    where
+        id=?
+Hibernate: 
+    select
+        pe1_0.id,
+        pe1_0.date_of_birth,
+        pe1_0.fio,
+        pe1_0.insurance_number 
+    from
+        t_patient pe1_0 
+    where
+        pe1_0.id=?
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.13</a> at 5 апр. 2025 г., 17:05:56</p>
+</div>
+</div>
+</body>
+</html>

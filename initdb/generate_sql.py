@@ -1,74 +1,112 @@
+import os
 import random
 from datetime import datetime, timedelta
-import os
 
 def generate_patients(count=10):
-    first_names = ["Иван", "Петр", "Сергей", "Алексей", "Дмитрий", "Анна", "Елена", "Ольга", "Татьяна", "Наталья"]
-    last_names = ["Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов", "Васильев", "Попов", "Новиков", "Федоров", "Морозов"]
-    middle_names = ["Иванович", "Петрович", "Сергеевич", "Алексеевич", "Дмитриевич", "Ивановна", "Петровна", "Сергеевна", "Алексеевна", "Дмитриевна"]
+    male_first_names = ["Иван", "Петр", "Сергей", "Алексей", "Дмитрий"]
+    female_first_names = ["Анна", "Елена", "Ольга", "Татьяна", "Наталья"]
+    male_middle_names = ["Иванович", "Петрович", "Сергеевич", "Алексеевич", "Дмитриевич"]
+    female_middle_names = ["Ивановна", "Петровна", "Сергеевна", "Алексеевна", "Дмитриевна"]
+    male_last_names = ["Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов"]
+    female_last_names = ["Иванова", "Петрова", "Сидорова", "Смирнова", "Кузнецова"]
 
     patients = []
     for i in range(1, count + 1):
-        last_name = random.choice(last_names)
-        first_name = random.choice(first_names)
-        middle_name = random.choice(middle_names)
-        patient = {
+        gender = random.choice(["male", "female"])
+        if gender == "male":
+            first_name = random.choice(male_first_names)
+            middle_name = random.choice(male_middle_names)
+            last_name = random.choice(male_last_names)
+        else:
+            first_name = random.choice(female_first_names)
+            middle_name = random.choice(female_middle_names)
+            last_name = random.choice(female_last_names)
+
+        fio = f"{last_name} {first_name} {middle_name}"
+        birth_date = f"{random.randint(1950, 2010)}-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}"
+        insurance_number = f"{random.randint(1000, 9999)} {random.randint(100000, 999999)}"
+
+        patients.append({
             "id": i,
-            "fio": f"{last_name} {first_name} {middle_name}",
-            "birth_date": f"{random.randint(1950, 2010)}-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}",
-            "insurance_number": f"{random.randint(1000, 9999)} {random.randint(100000, 999999)}"
-        }
-        patients.append(patient)
+            "fio": fio,
+            "birth_date": birth_date,
+            "insurance_number": insurance_number
+        })
     return patients
 
 def generate_doctors(count=5):
     specialties = ["Терапевт", "Хирург", "Кардиолог", "Невролог", "Офтальмолог", "Отоларинголог", "Стоматолог"]
-    first_names = ["Александр", "Михаил", "Андрей", "Евгений", "Владимир", "Мария", "Екатерина", "Ирина", "Светлана", "Юлия"]
-    last_names = ["Смирнов", "Иванов", "Кузнецов", "Попов", "Васильев", "Петрова", "Сидорова", "Михайлова", "Федорова", "Николаева"]
+    male_names = ["Александр", "Михаил", "Андрей", "Евгений", "Владимир"]
+    female_names = ["Мария", "Екатерина", "Ирина", "Светлана", "Юлия"]
+    male_last_names = ["Смирнов", "Иванов", "Кузнецов", "Попов", "Васильев"]
+    female_last_names = ["Петрова", "Сидорова", "Михайлова", "Федорова", "Николаева"]
 
     doctors = []
     for i in range(1, count + 1):
-        last_name = random.choice(last_names)
-        first_name = random.choice(first_names)
-        middle_name = random.choice(first_names) + "ович" if first_name[-1] != 'а' else random.choice(first_names) + "овна"
-        doctor = {
+        gender = random.choice(["male", "female"])
+        if gender == "male":
+            first_name = random.choice(male_names)
+            last_name = random.choice(male_last_names)
+            middle_name = random.choice(male_names) + "ович"
+        else:
+            first_name = random.choice(female_names)
+            last_name = random.choice(female_last_names)
+            middle_name = random.choice(male_names) + "овна"
+
+        fio = f"{last_name} {first_name} {middle_name}"
+        specialization = random.choice(specialties)
+        work_schedule = f"{random.randint(8, 9)}:00-{random.randint(16, 18)}:00"
+
+        doctors.append({
             "id": i,
-            "fio": f"{last_name} {first_name} {middle_name}",
-            "specialization": random.choice(specialties),
-            "work_schedule": f"{random.randint(8, 10)}:00-{random.randint(15, 18)}:00"
-        }
-        doctors.append(doctor)
+            "fio": fio,
+            "specialization": specialization,
+            "work_schedule": work_schedule
+        })
     return doctors
 
 def generate_appointments(count=20, patient_count=10, doctor_count=5, doctors=None):
+    specialization_diagnosis_map = {
+        "Терапевт": ["ОРВИ", "Грипп", "Гастрит", "Гипертония"],
+        "Хирург": ["Аппендицит", "Грыжа", "Травма", "Послеоперационный осмотр"],
+        "Кардиолог": ["Гипертония", "ИБС", "Аритмия"],
+        "Невролог": ["Мигрень", "Неврит", "Радикулит"],
+        "Офтальмолог": ["Конъюнктивит", "Катаракта", "Близорукость"],
+        "Отоларинголог": ["Ангина", "Синусит", "Отит"],
+        "Стоматолог": ["Кариес", "Пульпит", "Профосмотр"]
+    }
+
     appointments = []
     for i in range(1, count + 1):
-        appointment_date = datetime.now() + timedelta(days=random.randint(1, 30), hours=random.randint(9, 17))
-        doctor_id = random.randint(1, doctor_count)
-        specialization = doctors[doctor_id-1]['specialization'] if doctors else "Терапевт"
+        doctor = random.choice(doctors)
+        specialization = doctor['specialization']
+        diagnoses = specialization_diagnosis_map.get(specialization, ["Общее обследование"])
+        diagnosis = random.choice(diagnoses)
 
-        appointment = {
+        appointment_date = datetime.now() + timedelta(days=random.randint(1, 30), hours=random.randint(9, 17))
+
+        appointments.append({
             "id": i,
             "patient_id": random.randint(1, patient_count),
-            "doctor_id": doctor_id,
+            "doctor_id": doctor['id'],
             "appointment_date": appointment_date.strftime("%Y-%m-%d %H:%M:%S"),
-            "diagnosis": random.choice(["ОРВИ", "Гипертония", "Гастрит", "Ангина", "Бронхит", "Консультация"]),
+            "diagnosis": diagnosis,
             "status": random.choice(["SCHEDULED", "COMPLETED", "CANCELLED"]),
             "specialization": specialization
-        }
-        appointments.append(appointment)
+        })
     return appointments
 
 def generate_sql_scripts():
-    # Создаем директорию, если её нет
-    os.makedirs("initdb", exist_ok=True)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    scripts_path = os.path.join(base_dir, "scripts_python")
+    os.makedirs(scripts_path, exist_ok=True)
 
     patients = generate_patients()
     doctors = generate_doctors()
     appointments = generate_appointments(doctors=doctors)
 
-    # Имя файла соответствует Flyway naming convention
-    with open("scripts_python/V1__init_tables_and_data.sql", "w", encoding="utf-8") as f:
+    filepath = os.path.join(scripts_path, "V1__init_tables_and_data.sql")
+    with open(filepath, "w", encoding="utf-8") as f:
         f.write("-- Flyway migration script V1\n\n")
         f.write("BEGIN TRANSACTION;\n\n")
 
@@ -105,27 +143,24 @@ def generate_sql_scripts():
         f.write("CREATE INDEX idx_appointment_date ON t_appointment (appointment_date);\n")
         f.write("CREATE INDEX idx_appointment_specialization ON t_appointment (specialization);\n\n")
 
-        f.write("-- Вставка тестовых данных\n")
         for patient in patients:
             f.write(f"INSERT INTO t_patient (id, fio, date_of_birth, insurance_number) VALUES (")
-            f.write(f"{patient['id']}, '{patient['fio']}', ")
-            f.write(f"'{patient['birth_date']}', '{patient['insurance_number']}');\n")
+            f.write(f"{patient['id']}, '{patient['fio']}', '{patient['birth_date']}', '{patient['insurance_number']}');\n")
 
         f.write("\n")
         for doctor in doctors:
             f.write(f"INSERT INTO t_doctor (id, fio, specialization, work_schedule) VALUES (")
-            f.write(f"{doctor['id']}, '{doctor['fio']}', ")
-            f.write(f"'{doctor['specialization']}', '{doctor['work_schedule']}');\n")
+            f.write(f"{doctor['id']}, '{doctor['fio']}', '{doctor['specialization']}', '{doctor['work_schedule']}');\n")
 
         f.write("\n")
         for appointment in appointments:
             f.write(f"INSERT INTO t_appointment (id, patient_id, doctor_id, appointment_date, diagnosis, status, specialization) VALUES (")
             f.write(f"{appointment['id']}, {appointment['patient_id']}, {appointment['doctor_id']}, ")
-            f.write(f"'{appointment['appointment_date']}', '{appointment['diagnosis']}', ")
-            f.write(f"'{appointment['status']}', '{appointment['specialization']}');\n")
+            f.write(f"'{appointment['appointment_date']}', '{appointment['diagnosis']}', '{appointment['status']}', '{appointment['specialization']}');\n")
 
         f.write("\nCOMMIT;\n")
 
+    print(f"SQL-скрипт сгенерирован: {filepath}")
+
 if __name__ == "__main__":
     generate_sql_scripts()
-    print("SQL скрипты успешно сгенерированы в файле scripts_python/V1__init_tables_and_data.sql")
