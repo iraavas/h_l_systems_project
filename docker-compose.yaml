@@ -14,7 +14,9 @@ services:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 1
+    networks:
+      - app-network
 
   init-db:
     image: python:3.11
@@ -25,11 +27,11 @@ services:
     command: python generate_sql.py
     depends_on:
       - database
+    networks:
+      - app-network
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: iraavas/myproject:latest
     container_name: spring-boot-app
     ports:
       - "8080:8080"
@@ -45,6 +47,12 @@ services:
         condition: service_healthy
     volumes:
       - ./initdb/scripts_python:/flyway/sql
+    networks:
+      - app-network
 
 volumes:
   postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

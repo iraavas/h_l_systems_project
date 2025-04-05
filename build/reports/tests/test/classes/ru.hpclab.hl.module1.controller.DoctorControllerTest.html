@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.674s</div>
+<div class="counter">1.181s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,7 +82,7 @@
 </thead>
 <tr>
 <td class="success">shouldReturnDoctorsList()</td>
-<td class="success">0.674s</td>
+<td class="success">1.181s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -90,43 +90,31 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>17:05:28.607 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ru.hpclab.hl.module1.controller.DoctorControllerTest]: DoctorControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:05:28.783 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ru.hpclab.hl.module1.Module1Application for test class ru.hpclab.hl.module1.controller.DoctorControllerTest
-17:05:28.898 [Test worker] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
-17:05:28.903 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
-17:05:28.916 [Test worker] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.20.5
-17:05:29.115 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
-17:05:29.375 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
-17:05:29.377 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
-17:05:29.395 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+<pre>19:31:08.004 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ru.hpclab.hl.module1.controller.DoctorControllerTest]: DoctorControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:31:08.194 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ru.hpclab.hl.module1.Module1Application for test class ru.hpclab.hl.module1.controller.DoctorControllerTest
+19:31:08.307 [Test worker] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+19:31:08.311 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+19:31:08.319 [Test worker] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.20.5
+19:31:08.525 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+19:31:08.924 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+19:31:08.926 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+19:31:08.955 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
   Server Version: 27.5.1
   API Version: 1.47
   Operating System: Docker Desktop
   Total Memory: 15723 MB
   Labels: 
     com.docker.desktop.address=npipe://\\.\pipe\docker_cli
-17:05:29.422 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Pulling docker image: testcontainers/ryuk:0.11.0. Please be patient; this may take some time but only needs to be done once.
-17:05:33.638 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Starting to pull image
-17:05:33.660 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
-17:05:37.051 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Pulling image layers:  2 pending,  1 downloaded,  0 extracted, (5 MB/? MB)
-17:05:37.252 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Pulling image layers:  1 pending,  2 downloaded,  0 extracted, (6 MB/? MB)
-17:05:37.851 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Pulling image layers:  0 pending,  3 downloaded,  0 extracted, (9 MB/10 MB)
-17:05:37.925 [docker-java-stream-1205249415] INFO tc.testcontainers/ryuk:0.11.0 -- Pull complete. 3 layers, pulled in 4s (downloaded 9 MB at 2 MB/s)
-17:05:37.925 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Image testcontainers/ryuk:0.11.0 pull took PT8.5030987S
-17:05:37.974 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Creating container for image: testcontainers/ryuk:0.11.0
-17:05:38.120 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 is starting: 173f1533a026f345492c42fd56e635729ffc72897176fc59ba30a5f831ad853c
-17:05:38.571 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 started in PT0.5970289S
-17:05:38.576 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
-17:05:38.576 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
-17:05:38.577 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
-17:05:38.583 [Test worker] INFO tc.postgres:16 -- Pulling docker image: postgres:16. Please be patient; this may take some time but only needs to be done once.
-17:05:40.629 [docker-java-stream-30567901] INFO tc.postgres:16 -- Starting to pull image
-17:05:40.631 [docker-java-stream-30567901] INFO tc.postgres:16 -- Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
-17:05:43.089 [Test worker] INFO tc.postgres:16 -- Image postgres:16 pull took PT4.5061982S
-17:05:43.115 [Test worker] INFO tc.postgres:16 -- Creating container for image: postgres:16
-17:05:43.486 [Test worker] INFO tc.postgres:16 -- Container postgres:16 is starting: e8cbd8644d94ba97f7b8a7373ab7c9623ee2d59c45f788bb910278f5c7d10c66
-17:05:44.635 [Test worker] INFO tc.postgres:16 -- Container postgres:16 started in PT1.5191049S
-17:05:44.636 [Test worker] INFO tc.postgres:16 -- Container is started (JDBC URL: jdbc:postgresql://localhost:51274/module1?loggerLevel=OFF)
+19:31:09.065 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Creating container for image: testcontainers/ryuk:0.11.0
+19:31:09.492 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 is starting: 194a8b15c66b51e7f6fea61a57b5e02b3fc9fcf11b781015d6fba30704a5124f
+19:31:10.269 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 started in PT1.2036381S
+19:31:10.278 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+19:31:10.279 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+19:31:10.280 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+19:31:10.280 [Test worker] INFO tc.postgres:16 -- Creating container for image: postgres:16
+19:31:10.412 [Test worker] INFO tc.postgres:16 -- Container postgres:16 is starting: 8801bff1ca9e927288755d3036313a442a4ea7c53abf20825eae60b29f873ce4
+19:31:12.518 [Test worker] INFO tc.postgres:16 -- Container postgres:16 started in PT2.2377151S
+19:31:12.521 [Test worker] INFO tc.postgres:16 -- Container is started (JDBC URL: jdbc:postgresql://localhost:56524/module1?loggerLevel=OFF)
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -137,35 +125,35 @@
 
  :: Spring Boot ::                (v3.4.3)
 
-2025-04-05T17:05:44.924+03:00  INFO 21088 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : Starting DoctorControllerTest using Java 21.0.6 with PID 21088 (started by Irina in C:\Users\User\hl-module1)
-2025-04-05T17:05:44.925+03:00  INFO 21088 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2025-04-05T17:05:45.704+03:00  INFO 21088 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-05T17:05:45.787+03:00  INFO 21088 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 3 JPA repository interfaces.
-2025-04-05T17:05:46.468+03:00  INFO 21088 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
-2025-04-05T17:05:46.481+03:00  INFO 21088 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-04-05T17:05:46.482+03:00  INFO 21088 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-04-05T17:05:46.555+03:00  INFO 21088 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-04-05T17:05:46.556+03:00  INFO 21088 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1615 ms
-2025-04-05T17:05:46.722+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-05T17:05:46.925+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7131d668
-2025-04-05T17:05:46.927+03:00  INFO 21088 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-05T17:05:47.086+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : Flyway OSS Edition 10.0.0 by Redgate
-2025-04-05T17:05:47.086+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : 
-2025-04-05T17:05:47.086+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : See release notes here: https://rd.gt/416ObMi
-2025-04-05T17:05:47.100+03:00  INFO 21088 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:51274/module1 (PostgreSQL 16.8)
-2025-04-05T17:05:47.113+03:00  WARN 21088 --- [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 16.8 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
-2025-04-05T17:05:47.135+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table &quot;public&quot;.&quot;flyway_schema_history&quot; does not exist yet
-2025-04-05T17:05:47.138+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.014s)
-2025-04-05T17:05:47.138+03:00  WARN 21088 --- [    Test worker] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
-2025-04-05T17:05:47.154+03:00  INFO 21088 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table &quot;public&quot;.&quot;flyway_schema_history&quot; ...
-2025-04-05T17:05:47.203+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema &quot;public&quot;: &lt;&lt; Empty Schema &gt;&gt;
-2025-04-05T17:05:47.206+03:00  INFO 21088 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema &quot;public&quot; is up to date. No migration necessary.
-2025-04-05T17:05:47.342+03:00  INFO 21088 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-05T17:05:47.430+03:00  INFO 21088 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-04-05T17:05:47.476+03:00  INFO 21088 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-04-05T17:05:47.732+03:00  INFO 21088 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-05T17:05:47.777+03:00  WARN 21088 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-05T17:05:47.791+03:00  INFO 21088 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-04-05T19:31:13.054+03:00  INFO 18196 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : Starting DoctorControllerTest using Java 21.0.6 with PID 18196 (started by Irina in C:\Users\User\hl-module1)
+2025-04-05T19:31:13.056+03:00  INFO 18196 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-04-05T19:31:14.322+03:00  INFO 18196 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-05T19:31:14.438+03:00  INFO 18196 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 3 JPA repository interfaces.
+2025-04-05T19:31:15.501+03:00  INFO 18196 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2025-04-05T19:31:15.528+03:00  INFO 18196 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-05T19:31:15.530+03:00  INFO 18196 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-05T19:31:15.664+03:00  INFO 18196 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-05T19:31:15.666+03:00  INFO 18196 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2581 ms
+2025-04-05T19:31:15.973+03:00  INFO 18196 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-05T19:31:16.280+03:00  INFO 18196 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7d70ba18
+2025-04-05T19:31:16.283+03:00  INFO 18196 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-05T19:31:16.580+03:00  INFO 18196 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : Flyway OSS Edition 10.0.0 by Redgate
+2025-04-05T19:31:16.580+03:00  INFO 18196 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : 
+2025-04-05T19:31:16.581+03:00  INFO 18196 --- [    Test worker] o.f.c.i.s.classpath.ClassPathScanner     : See release notes here: https://rd.gt/416ObMi
+2025-04-05T19:31:16.602+03:00  INFO 18196 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:56524/module1 (PostgreSQL 16.8)
+2025-04-05T19:31:16.621+03:00  WARN 18196 --- [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 16.8 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-04-05T19:31:16.653+03:00  INFO 18196 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table &quot;public&quot;.&quot;flyway_schema_history&quot; does not exist yet
+2025-04-05T19:31:16.657+03:00  INFO 18196 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.018s)
+2025-04-05T19:31:16.657+03:00  WARN 18196 --- [    Test worker] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2025-04-05T19:31:16.682+03:00  INFO 18196 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table &quot;public&quot;.&quot;flyway_schema_history&quot; ...
+2025-04-05T19:31:16.757+03:00  INFO 18196 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema &quot;public&quot;: &lt;&lt; Empty Schema &gt;&gt;
+2025-04-05T19:31:16.763+03:00  INFO 18196 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema &quot;public&quot; is up to date. No migration necessary.
+2025-04-05T19:31:16.925+03:00  INFO 18196 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-05T19:31:17.017+03:00  INFO 18196 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-04-05T19:31:17.079+03:00  INFO 18196 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-05T19:31:17.635+03:00  INFO 18196 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-05T19:31:17.722+03:00  WARN 18196 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-05T19:31:17.748+03:00  INFO 18196 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 16.8
@@ -173,7 +161,7 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-04-05T17:05:48.821+03:00  INFO 21088 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-05T19:31:19.375+03:00  INFO 18196 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     create table t_appointment (
         id bigint generated by default as identity,
@@ -203,8 +191,8 @@ Hibernate:
 Hibernate: 
     alter table if exists t_patient 
        drop constraint if exists UKdg4l3b692vv0yu9a566p5g0rp
-2025-04-05T17:05:48.866+03:00  WARN 21088 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-04-05T17:05:48.866+03:00  WARN 21088 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint &quot;ukdg4l3b692vv0yu9a566p5g0rp&quot; of relation &quot;t_patient&quot; does not exist, skipping
+2025-04-05T19:31:19.477+03:00  WARN 18196 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-04-05T19:31:19.477+03:00  WARN 18196 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint &quot;ukdg4l3b692vv0yu9a566p5g0rp&quot; of relation &quot;t_patient&quot; does not exist, skipping
 Hibernate: 
     alter table if exists t_patient 
        add constraint UKdg4l3b692vv0yu9a566p5g0rp unique (insurance_number)
@@ -218,14 +206,14 @@ Hibernate:
        add constraint FKjedixwd7ll8ayjfdy1r13qum6 
        foreign key (patient_id) 
        references t_patient
-2025-04-05T17:05:48.874+03:00  INFO 21088 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-05T17:05:49.122+03:00  INFO 21088 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-04-05T17:05:50.252+03:00  WARN 21088 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-05T17:05:51.225+03:00  INFO 21088 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 51285 (http) with context path '/'
-2025-04-05T17:05:51.234+03:00  INFO 21088 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : Started DoctorControllerTest in 6.566 seconds (process running for 23.611)
-2025-04-05T17:05:51.710+03:00  INFO 21088 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-05T17:05:51.710+03:00  INFO 21088 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-05T17:05:51.711+03:00  INFO 21088 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-05T19:31:19.489+03:00  INFO 18196 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-05T19:31:19.907+03:00  INFO 18196 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-05T19:31:21.323+03:00  WARN 18196 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-05T19:31:22.454+03:00  INFO 18196 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 56535 (http) with context path '/'
+2025-04-05T19:31:22.469+03:00  INFO 18196 --- [    Test worker] r.h.h.m.controller.DoctorControllerTest  : Started DoctorControllerTest in 9.876 seconds (process running for 15.506)
+2025-04-05T19:31:23.290+03:00  INFO 18196 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-05T19:31:23.291+03:00  INFO 18196 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-05T19:31:23.292+03:00  INFO 18196 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 Hibernate: 
     select
         de1_0.id,
@@ -255,7 +243,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at 5 апр. 2025 г., 17:05:56</p>
+<a href="https://www.gradle.org">Gradle 8.13</a> at 5 апр. 2025 г., 19:31:30</p>
 </div>
 </div>
 </body>
