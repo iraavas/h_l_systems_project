@@ -1,14 +1,23 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.1.5'
-	id 'io.spring.dependency-management' version '1.1.3'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'io.freefair.lombok' version '8.13'
 }
 
 group = 'ru.hpclab.hl'
-version = '0.0.1-SNAPSHOT'
+version '1.0-SNAPSHOT'
 
 java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 	sourceCompatibility = '21'
+}
+
+tasks.named('bootJar') {
+	mainClass = 'ru.hpclab.hl.module1.Module1Application'
+	archiveFileName = "app.jar"
 }
 
 repositories {
@@ -16,16 +25,55 @@ repositories {
 }
 
 dependencies {
+	// Основные зависимости
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.postgresql:postgresql'
-	implementation "org.flywaydb:flyway-core"
+	implementation 'org.springframework.boot:spring-boot-starter'
+	runtimeOnly 'org.postgresql:postgresql'
 
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+	// для поддержки аннотаций вроде @NotNull, @Valid
+	implementation 'org.glassfish:jakarta.el:4.0.2'
+
+
+	// Flyway для миграций
+	implementation 'org.flywaydb:flyway-core:10.0.0'
+	implementation 'org.flywaydb:flyway-database-postgresql:10.0.0'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.36'
+	annotationProcessor 'org.projectlombok:lombok:1.18.36'
+	testCompileOnly 'org.projectlombok:lombok:1.18.36'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+	// JUnit 5 (обновленная версия)
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.zonky.test:embedded-database-spring-test:2.2.0'
-	testImplementation 'io.zonky.test:embedded-postgres:2.0.3'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+
+	// Mockito
+	testImplementation 'org.mockito:mockito-core:5.7.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.7.0'
+}
+
+tasks.named('jar') {
+	enabled = false
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.named("wrapper") {
+	gradleVersion = '8.13'
+}
+
+sourceSets {
+	test {
+		java.srcDirs = ['src/test/java']
+	}
 }
