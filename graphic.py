@@ -16,7 +16,7 @@ def plot_and_save(df, x, y, title, xlabel, ylabel, filename, color='blue', label
     plt.close()
 
 # Путь к JSON-файлу
-file_path = 'D:/proj/vm1/result_2.json'  # <--- проверь этот путь
+file_path = 'D:/proj/vm1/result_2.json'
 
 # Загрузка NDJSON данных
 data = []
