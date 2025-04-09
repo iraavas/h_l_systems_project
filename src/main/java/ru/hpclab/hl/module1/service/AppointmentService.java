@@ -10,6 +10,7 @@ import ru.hpclab.hl.module1.mapper.AppointmentMapper;
 import ru.hpclab.hl.module1.repository.AppointmentRepository;
 import ru.hpclab.hl.module1.repository.DoctorRepository;
 import ru.hpclab.hl.module1.repository.PatientRepository;
+import ru.hpclab.hl.module1.model.AppointmentStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -61,7 +62,12 @@ public class AppointmentService {
 
         // Создаём запись
         AppointmentEntity appointmentEntity = AppointmentMapper.toEntity(appointmentDTO, patient, doctor);
+
+        // Устанавливаем статус по умолчанию
+        appointmentEntity.setStatus(AppointmentStatus.SCHEDULED);
+
         return AppointmentMapper.toDTO(appointmentRepository.save(appointmentEntity));
+
     }
 
     public AppointmentDTO updateAppointment(Long id, AppointmentDTO appointmentDTO) {

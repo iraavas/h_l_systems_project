@@ -1,4 +1,6 @@
+
 services:
+
   database:
     image: postgres:16
     container_name: pg-docker

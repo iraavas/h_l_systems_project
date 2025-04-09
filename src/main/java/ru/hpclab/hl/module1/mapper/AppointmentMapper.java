@@ -4,7 +4,7 @@ import ru.hpclab.hl.module1.dto.AppointmentDTO;
 import ru.hpclab.hl.module1.entity.AppointmentEntity;
 import ru.hpclab.hl.module1.entity.DoctorEntity;
 import ru.hpclab.hl.module1.entity.PatientEntity;
-import ru.hpclab.hl.module1.entity.AppointmentStatus;
+import ru.hpclab.hl.module1.model.AppointmentStatus;
 
 public class AppointmentMapper {
     private AppointmentMapper() {

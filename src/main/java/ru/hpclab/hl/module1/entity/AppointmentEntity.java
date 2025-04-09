@@ -45,9 +45,6 @@ public class AppointmentEntity {
         this.status = status;
     }
 
-    public AppointmentEntity(Long id, PatientEntity patient, DoctorEntity doctor, LocalDateTime appointmentDate, String diagnosis, ru.hpclab.hl.module1.entity.AppointmentStatus appointmentStatus) {
-    }
-
     public Long getId() {
         return id;
     }

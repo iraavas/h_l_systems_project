@@ -1,5 +1,5 @@
-package ru.hpclab.hl.module1.service;
 
+package ru.hpclab.hl.module1.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.hpclab.hl.module1.dto.DoctorDTO;
@@ -104,4 +104,6 @@ public class DoctorServiceTest {
         boolean available = doctorService.isDoctorAvailable("Терапевт", time);
         assertThat(available).isTrue();
     }
+
 }
+
