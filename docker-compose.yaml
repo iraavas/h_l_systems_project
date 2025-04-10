@@ -1,7 +1,7 @@
 services:
 
   database:
-    image: postgres:16
+    image: postgres:latest
     container_name: pg-docker
     environment:
       POSTGRES_DB: module1
@@ -35,7 +35,7 @@ services:
     image: iraavas/myproject:latest
     container_name: spring-boot-app
     ports:
-      - "8080:8080"
+      - "8080:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/module1
       SPRING_DATASOURCE_USERNAME: postgres
@@ -46,8 +46,8 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    volumes:
-      - ./initdb/scripts_python:/flyway/sql
+#    volumes:
+#      - ./initdb/scripts_python:/flyway/sql
     networks:
       - app-network
 

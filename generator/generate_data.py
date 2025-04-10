@@ -5,7 +5,7 @@ import requests
 from datetime import datetime, timedelta
 
 fake = Faker("ru_RU")
-BASE_URL = "http://localhost:8081"
+BASE_URL = "http://localhost:8080"
 
 def clear_all():
     requests.delete(f"{BASE_URL}/clear")
