@@ -1,53 +1,45 @@
-services:
+version: "3.9"
 
+services:
   database:
-    image: postgres:latest
+    image: postgres:16.1-alpine3.18
     container_name: pg-docker
+    restart: always
     environment:
-      POSTGRES_DB: module1
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-module1}
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
-      retries: 1
+      retries: 5
     networks:
       - app-network
-
-  # init-db:
-  #   image: python:3.11
-  #   container_name: db-init
-  #   working_dir: /app
-  #   volumes:
-  #     - ./initdb:/app
-  #   command: python generate_sql.py
-  #   depends_on:
-  #     - database
-  #   networks:
-  #     - app-network
 
   app:
     image: iraavas/myproject:latest
     container_name: spring-boot-app
-    ports:
-      - "8080:8081"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/module1
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_JPA_HIBERNATE_DDL_AUTO: none
-      SPRING_FLYWAY_ENABLED: true
-      SPRING_FLYWAY_LOCATIONS: classpath:db/migration,filesystem:/flyway/sql
+    restart: always
     depends_on:
       database:
         condition: service_healthy
-#    volumes:
-#      - ./initdb/scripts_python:/flyway/sql
+    ports:
+      - "8081:8081"
+    mem_limit: ${APP_MEM_LIMIT:-512m}
+    cpus: ${APP_CPU_LIMIT:-0.5}
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:${DB_PORT:-5432}/${DB_NAME:-module1}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-postgres}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_JPA_SHOW_SQL: ${SHOW_SQL:-false}
+      SERVER_TOMCAT_MAX_THREADS: ${TOMCAT_THREADS:-100}
+      SPRING_FLYWAY_ENABLED: true
     networks:
       - app-network
 
@@ -71,3 +63,4 @@ volumes:
 networks:
   app-network:
     driver: bridge
+
