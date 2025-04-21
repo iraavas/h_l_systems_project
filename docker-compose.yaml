@@ -30,16 +30,19 @@ services:
         condition: service_healthy
     ports:
       - "8081:8081"
-    mem_limit: ${APP_MEM_LIMIT:-512m}
-    cpus: ${APP_CPU_LIMIT:-0.5}
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database:${DB_PORT:-5432}/${DB_NAME:-module1}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_HOST:-database}:${DB_PORT:-5432}/${DB_NAME:-module1}
       SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-postgres}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-postgres}
       SPRING_JPA_HIBERNATE_DDL_AUTO: none
       SPRING_JPA_SHOW_SQL: ${SHOW_SQL:-false}
       SERVER_TOMCAT_MAX_THREADS: ${TOMCAT_THREADS:-100}
       SPRING_FLYWAY_ENABLED: true
+    deploy:
+      resources:
+        limits:
+          cpus: ${APP_CPU_LIMIT:-0.5}
+          memory: ${APP_MEM_LIMIT:-512m}
     networks:
       - app-network
 
